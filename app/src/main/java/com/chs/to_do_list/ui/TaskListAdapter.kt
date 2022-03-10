@@ -10,10 +10,9 @@ import com.chs.to_do_list.R
 import com.chs.to_do_list.databinding.ItemTaskBinding
 import com.chs.to_do_list.model.Task
 
-
 class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCallBack()) {
     var listenerEdit : (Task) -> Unit = {}
-    var listenerDelete : (Task)  -> Unit = {}
+    var listenerDelete : (Task) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -28,8 +27,9 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCa
     inner class TaskViewHolder(
         private val binding: ItemTaskBinding
         ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: Task) {
-            binding.tvTitle.text = item?.title
+            binding.tvTitle.text = item.title
             binding.tvDateHour.text = "${item?.date} ${item?.hour}"
             binding.ivMore.setOnClickListener {
                 showPopup(item)
@@ -54,7 +54,7 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCa
     }
 
 
-class DiffCallBack : DiffUtil.ItemCallback<Task>(){
+class DiffCallBack : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task) = oldItem == newItem
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task) = oldItem.id == newItem.id
