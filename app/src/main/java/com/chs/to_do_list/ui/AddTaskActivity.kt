@@ -25,7 +25,7 @@ class AddTaskActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if(intent.hasExtra(TASK_ID)){
-            intent.getIntExtra(TASK_ID, 0)
+            val taskId = intent.getIntExtra(TASK_ID, 0)
             TaskDataSource.findByid(taskId)?.let {
                 binding.tilTitle.text = it.title
                 binding.tilDate.text = it.date
@@ -42,7 +42,7 @@ class AddTaskActivity : AppCompatActivity() {
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
             datePicker.addOnPositiveButtonClickListener {
                 val timeZone = TimeZone.getDefault()
-                val offset = timeZone.getOffset(Date().time)* -1
+                val offset = timeZone.getOffset(Date().time) * -1
                 binding.tilDate.text = Date(it + offset).format()
             }
             datePicker.show(supportFragmentManager, "DATE_PICKER_TAG")

@@ -22,11 +22,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.rvTasks.adapter = adapter
+
         updateList()
 
         insertListeners()
+
     }
 
     private fun insertListeners() {
