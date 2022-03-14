@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddTaskActivity::class.java)
             intent.putExtra(AddTaskActivity.TASK_ID, it.id)
             register.launch(intent)
+            updateList()
         }
         adapter.listenerDelete = {
             TaskDataSource.deleteTask(it)
